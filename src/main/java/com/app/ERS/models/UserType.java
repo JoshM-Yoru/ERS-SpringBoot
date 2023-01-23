@@ -9,16 +9,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "employee_role")
+@Table(name = "user_type")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserType {
 
   @Id
-  @Column(name = "role_id")
-  private Integer roleId;
+  @Column(name = "type_id")
+  private Integer typeId;
 
   @Column(unique = true)
-  private String role;
+  private String type;
 }

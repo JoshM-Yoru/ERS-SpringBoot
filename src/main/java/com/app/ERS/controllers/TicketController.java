@@ -33,9 +33,9 @@ public class TicketController {
     return tService.approveDenyTicket(body.managerId, body.ticketId, body.approved);
   }
 
-  @GetMapping("/{role}")
-  public List<Ticket> getTickets(@PathVariable("role") String role, @RequestParam("id") int id) {
-    if (role.equals("manager")) {
+  @GetMapping("/{type}")
+  public List<Ticket> getTickets(@PathVariable("type") String type, @RequestParam("id") int id) {
+    if (type.equals("manager")) {
       return tService.getPendingTickets(id);
     } else {
       return tService.getEmployeeTickets(id);

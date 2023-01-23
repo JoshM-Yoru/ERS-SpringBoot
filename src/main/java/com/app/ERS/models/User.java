@@ -31,9 +31,9 @@ public class User {
   private int userId;
 
   @ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(name = "user_role_junction", joinColumns = {@JoinColumn(name = "user_id")},
-      inverseJoinColumns = {@JoinColumn(name = "role")})
-  private UserType type;
+  @JoinTable(name = "user_type_junction", joinColumns = {@JoinColumn(name = "user_id")},
+      inverseJoinColumns = {@JoinColumn(name = "type")})
+  private List<UserType> type;
 
   @Column(name = "first_name")
   private String firstName;
@@ -56,7 +56,7 @@ public class User {
 
   @Override
   public String toString() {
-    return "Employee [userId=" + userId + ", role=" + type.get(0) + ", firstName=" + firstName
+    return "Employee [userId=" + userId + ", user type=" + type.get(0) + ", firstName=" + firstName
         + ", lastName=" + lastName + ", email=" + email + ", password=" + password
         + ", reimbursements=" + reimbursements.size() + ", reviewedReimbursements="
         + reviewedReimbursements.size() + "]";
