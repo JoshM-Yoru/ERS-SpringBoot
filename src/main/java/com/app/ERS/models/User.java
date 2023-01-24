@@ -13,6 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.springframework.beans.factory.annotation.Value;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -53,6 +54,9 @@ public class User {
   @OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL)
   @JsonIgnore
   private List<Ticket> reviewedReimbursements;
+
+  @Column(name = "current_employee")
+  private boolean currentEmployee;
 
   @Override
   public String toString() {

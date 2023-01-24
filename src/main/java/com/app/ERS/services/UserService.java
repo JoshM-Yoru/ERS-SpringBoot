@@ -28,7 +28,7 @@ public class UserService {
     types.add(type);
 
     User u = new User(0, types, firstName, lastName, email, password, new ArrayList<>(),
-        new ArrayList<>());
+        new ArrayList<>(), true);
 
     try {
       User returnedUser = uRepo.save(u);
