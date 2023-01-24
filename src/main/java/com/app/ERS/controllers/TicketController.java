@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import com.app.ERS.models.NewTicketObject;
 import com.app.ERS.models.Ticket;
-import com.app.ERS.models.TicketType;
+import com.app.ERS.models.UpdateTicketObject;
 import com.app.ERS.services.TicketService;
 import lombok.AllArgsConstructor;
 
@@ -35,27 +36,14 @@ public class TicketController {
 
   @GetMapping("/{type}")
   public List<Ticket> getTickets(@PathVariable("type") String type, @RequestParam("id") int id) {
+
     if (type.equals("manager")) {
       return tService.getPendingTickets(id);
     } else {
       return tService.getEmployeeTickets(id);
     }
+
   }
 
 }
 
-
-class NewTicketObject {
-  public TicketType type;
-  public String description;
-  public Double amount;
-  public String email;
-  public String date;
-}
-
-
-class UpdateTicketObject {
-  public int managerId;
-  public int ticketId;
-  public boolean approved;
-}

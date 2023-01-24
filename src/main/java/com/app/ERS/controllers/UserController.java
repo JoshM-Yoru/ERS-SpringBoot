@@ -19,7 +19,7 @@ import com.app.ERS.services.UserService;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/users")
 @CrossOrigin("*")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class UserController {
@@ -28,7 +28,6 @@ public class UserController {
 
   @PostMapping("/register")
   public User register(@RequestBody RegisterObject ro) {
-    System.out.println(ro);
     return uService.registerUser(ro.firstName, ro.lastName, ro.email, ro.password);
   }
 

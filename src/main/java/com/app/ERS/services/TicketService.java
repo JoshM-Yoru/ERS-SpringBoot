@@ -56,8 +56,16 @@ public class TicketService {
       }
 
       TicketStatus ts = approved ? tsRepo.findById(2).get() : tsRepo.findById(3).get();
+      List<TicketStatus> status = t.getStatus();
+      t.setReviewer(approver);
+      t.setReviewDate(LocalDate.now());
+      status.set(0, ts);
+
+      return tRepo.save(t);
 
     }
+
+    throw new InvalidAccess();
 
   }
 
@@ -67,7 +75,7 @@ public class TicketService {
 
     if (u.getType().get(0).getType().equals("MANAGER")) {
       TicketStatus ts = tsRepo.findById(1).get();
-      return tsRepo.getTicketsByStatus(ts);
+      return tRepo.getTicketsByStatus(ts);
     }
 
     throw new InvalidAccess();
@@ -77,7 +85,7 @@ public class TicketService {
   public List<Ticket> getEmployeeTickets(int id) {
     User u = uRepo.findById(id).get();
 
-    return uRepo.getTicketsBySubmitter(u);
+    return tRepo.getTicketsBySubmitter(u);
   }
 
 }
